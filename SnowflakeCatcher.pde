@@ -24,18 +24,19 @@ void draw()
 
 class Snowflake
 {
-  int x, y;
+  int x, y, d;
   boolean isMoving;
   Snowflake()
   {
     x = (int)(Math.random()*501);
-    y = (int)(Math.random()*501);
+    y = (int)(Math.random()*501) - 500;
+    d = (int)(Math.random()*4) + 7;
     isMoving = true;
   }
   void erase()
   {
     fill(0);
-    ellipse(x, y, 7, 7);
+    ellipse(x, y, d + 2, d + 2);
   }
   void move()
   {
@@ -46,29 +47,48 @@ class Snowflake
   }
   void lookDown()
   {
-    if(y > 0 && y < 500 && get(x, y + 1) != color(0))
+    if(y > 0 && y < 500 && (get(x, y + d) == color(255, 0, 0) || 
+                            get(x + d, y) == color(255, 0, 0) || 
+                            get(x - d, y) == color(255, 0, 0)))
      {
       isMoving = false;
+     }
+     else
+     {
+      isMoving = true;
      }
   } 
   void show()
   {
     fill(255);
-    ellipse(x, y, 5, 5);
+    ellipse(x, y, d, d);
   }
   void wrap()
   {
-    if(y > 498)
+    if(y > 490)
     {
       x = (int)(Math.random()*501);
-      y = 0;
+      y = (int)(Math.random()*501) - 500;
     }
   }
 }
 
 void mouseDragged()
 {
-  fill(255, 0, 0);
   noStroke();
-  ellipse(mouseX, mouseY, 15, 15);
+  if(mouseButton == LEFT)
+  {
+    fill(255, 0, 0);
+    ellipse(mouseX, mouseY, 15, 15);
+  }
+  else
+  {
+    fill(0);
+    ellipse(mouseX, mouseY, 15, 15);
+  }
+}
+
+void keyPressed()
+{
+  background(0);
 }
