@@ -47,9 +47,9 @@ class Snowflake
   }
   void lookDown()
   {
-    if(y > 0 && y < 500 && (get(x, y + d) == color(255, 0, 0) || 
-                            get(x + d, y) == color(255, 0, 0) || 
-                            get(x - d, y) == color(255, 0, 0)))
+    if(y > 0 && y < 500 && (get(x, y + d) == color(26, 206, 246) || 
+                            get(x + d, y) == color(26, 206, 246) || 
+                            get(x - d, y) == color(26, 206, 246)))
      {
       isMoving = false;
      }
@@ -78,7 +78,7 @@ void mouseDragged()
   noStroke();
   if(mouseButton == LEFT)
   {
-    fill(255, 0, 0);
+    fill(26, 206, 246);
     ellipse(mouseX, mouseY, 15, 15);
   }
   else
